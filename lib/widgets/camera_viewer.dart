@@ -8,6 +8,11 @@ class CameraViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CameraPreview(controller);
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        CameraPreview(controller),
+      ],
+    );
   }
 }
