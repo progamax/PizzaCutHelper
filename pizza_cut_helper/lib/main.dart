@@ -27,12 +27,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'PizzaCutHelper',
+      theme: ThemeData(brightness: Brightness.dark, primaryColor: Colors.red),
       home: Scaffold(
-        appBar: AppBar(title: Text("Pizza Cutter Helper"),),
+        appBar: AppBar(title: const Text("Pizza Cutter Helper"),),
         body: FutureBuilder<CameraController>(
           future: futureCameraController,
           builder: (context, snapshot){
