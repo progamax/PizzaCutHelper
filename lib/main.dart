@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
               return Align(
                   alignment: Alignment.topCenter,
                   child: Column(children: <Widget>[
-                    Flexible(flex: 4, child: CameraViewer(controller)),
+                    Flexible(flex: 4, child: CameraViewer(controller, sliderValue)),
                     Slider(
                         value: sliderValue.toDouble(),
                         onChanged: (change) {
