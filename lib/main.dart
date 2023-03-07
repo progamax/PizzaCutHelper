@@ -16,6 +16,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late Future<CameraController> futureCameraController;
   int sliderValue = 2;
+  bool frozenPreview = false;
 
   @override
   void initState() {
@@ -61,8 +62,15 @@ class _MyAppState extends State<MyApp> {
                                 child: LayoutBuilder(
                                   builder: (context, constraints) => IconButton(
                                       iconSize: constraints.biggest.height * .85,
-                                      onPressed: (){},
-                                      icon: const Icon(Icons.pause)),
+                                      onPressed: (){
+                                        if (frozenPreview){
+                                          controller.resumePreview();
+                                        }else{
+                                          controller.pausePreview();
+                                        }
+                                        frozenPreview = !frozenPreview;
+                                      },
+                                      icon: frozenPreview ? const Icon(Icons.play_arrow) : const Icon(Icons.pause)),
                                 )))),
                   ]));
             }else{
