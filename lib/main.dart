@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:pizza_cut_helper/widgets/camera_viewer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +41,7 @@ class _MyAppState extends State<MyApp> {
               return Align(
                   alignment: Alignment.topCenter,
                   child: Column(children: <Widget>[
-                    Flexible(flex: 4, child: CameraPreview(controller)),
+                    Flexible(flex: 4, child: CameraViewer(controller)),
                     Slider(
                         value: sliderValue.toDouble(),
                         onChanged: (change) {
