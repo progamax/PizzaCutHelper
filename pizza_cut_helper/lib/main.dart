@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late Future<CameraController> futureCameraController;
+  int sliderValue = 2;
 
   @override
   void initState() {
@@ -36,7 +37,33 @@ class _MyAppState extends State<MyApp> {
           builder: (context, snapshot){
             if (snapshot.hasData){
               var controller = snapshot.data!;
-              return CameraPreview(controller);
+              return Align(
+                  alignment: Alignment.topCenter,
+                  child: Column(children: <Widget>[
+                    Flexible(flex: 4, child: CameraPreview(controller)),
+                    Slider(
+                        value: sliderValue.toDouble(),
+                        onChanged: (change) {
+                          setState(() {
+                            sliderValue = change.toInt();
+                          });
+                        },
+                        min: 2,
+                        max: 20,
+                        divisions: 18,
+                        label: sliderValue.toString()),
+                    Expanded(
+                        flex: 1,
+                        child: Align(
+                            alignment: Alignment.center,
+                            child: InkResponse(
+                                child: LayoutBuilder(
+                                  builder: (context, constraints) => IconButton(
+                                      iconSize: constraints.biggest.height * .85,
+                                      onPressed: (){},
+                                      icon: const Icon(Icons.pause)),
+                                )))),
+                  ]));
             }else{
               return const Center(child: CircularProgressIndicator(),);
             }
