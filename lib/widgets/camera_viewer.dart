@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:pizza_cut_helper/painters/circular_cut.dart';
+import 'package:pizza_cut_helper/painters/grid_cut.dart';
 
 class CameraViewer extends StatefulWidget {
   final CameraController controller;
@@ -27,7 +28,7 @@ class _CameraViewerState extends State<CameraViewer> {
           onScaleStart: onScaleStart,
           onScaleEnd: onScaleEnd,
           onScaleUpdate: onScaleUpdate,
-          child: Center(child: CustomPaint(painter: CircularCut(widget.nbParts, helperScale * pinchScale), size: Size.infinite,),),
+          child: Center(child: CustomPaint(painter: GridCut(widget.nbParts, helperScale * pinchScale), size: Size.infinite,),),
         )
       ],
     );
@@ -46,7 +47,6 @@ class _CameraViewerState extends State<CameraViewer> {
   }
 
   void onScaleUpdate(ScaleUpdateDetails details) {
-    print(details);
     setState(() {
       pinchScale = details.scale;
     });
