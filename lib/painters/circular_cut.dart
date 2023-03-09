@@ -26,9 +26,6 @@ class CircularCut extends CustomPainter implements CutPainter {
       canvas.drawLine(
           Offset.zero, Offset.fromDirection((((i + 1) / numberParts) * 2 * pi) - (1 / 2) * pi, size.width / 2 * scale), paint);
     }
-    paint.color = Colors.black;
-    paint.strokeWidth = 2;
-    canvas.drawCircle(Offset.zero, size.width / 2 * scale + 4.5, paint);
   }
 
   @override
