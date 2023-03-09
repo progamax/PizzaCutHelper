@@ -7,7 +7,10 @@ class GridCut extends CustomPainter implements CutPainter{
   int rowsNumber;
   double scale;
 
-  GridCut(this.rowsNumber, this.scale);
+  GridCut(this.rowsNumber, this.scale){
+    //Ajout d'un padding autour du dessin
+    scale = 0.9 * scale;
+  }
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -16,7 +19,7 @@ class GridCut extends CustomPainter implements CutPainter{
     canvas.translate(size.width/2 * (1 - scale), size.height/2 * (1 - scale));
     canvas.scale(scale);
     Offset center = Offset(size.width / 2, size.height / 2 );
-    canvas.clipRRect(RRect.fromRectAndRadius(Rect.fromCenter(center: center, width: size.width, height: size.width), Radius.circular(size.width/2 - strokeWidth)));
+    canvas.clipRRect(RRect.fromRectAndRadius(Rect.fromCenter(center: center, width: size.width + strokeWidth, height: size.width + strokeWidth), Radius.circular(size.width/2+ strokeWidth)));
     Paint paint = Paint()
       ..color = Colors.white
       ..strokeCap = StrokeCap.round
