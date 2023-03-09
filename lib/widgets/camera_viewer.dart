@@ -16,7 +16,6 @@ class CameraViewer extends StatefulWidget {
 class _CameraViewerState extends State<CameraViewer> {
   double helperScale = 1;
   double pinchScale = 1;
-  bool isScaling = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +34,9 @@ class _CameraViewerState extends State<CameraViewer> {
   }
 
   void onScaleStart(ScaleStartDetails details) {
-    isScaling = true;
   }
 
   void onScaleEnd(ScaleEndDetails details) {
-    isScaling = false;
     setState(() {
       helperScale = helperScale * pinchScale;
       pinchScale = 1;
