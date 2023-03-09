@@ -1,8 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:pizza_cut_helper/painters/painters.dart';
 
-class CircularCut extends CustomPainter {
+class CircularCut extends CustomPainter implements CutPainter {
   int numberParts;
   double scale;
 

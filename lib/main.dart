@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:pizza_cut_helper/painters/painters.dart';
 import 'package:pizza_cut_helper/widgets/camera_viewer.dart';
 import 'package:pizza_cut_helper/widgets/helper_chooser.dart';
 import 'package:pizza_cut_helper/widgets/switch_button.dart';
@@ -19,6 +20,7 @@ class _MyAppState extends State<MyApp> {
   late Future<CameraController> futureCameraController;
   int sliderValue = 2;
   bool frozenPreview = false;
+  CutPainterType cutPainterType = CutPainterType.circular;
 
   @override
   void initState() {
@@ -49,7 +51,7 @@ class _MyAppState extends State<MyApp> {
                 return Align(
                     alignment: Alignment.topCenter,
                     child: Column(children: <Widget>[
-                      Flexible(flex: 4, child: CameraViewer(controller, sliderValue)),
+                      Flexible(flex: 4, child: CameraViewer(controller, sliderValue, cutPainterType)),
                       Slider(
                           value: sliderValue.toDouble(),
                           onChanged: (change) {
@@ -78,10 +80,14 @@ class _MyAppState extends State<MyApp> {
                               )))),
                       Align(
                         alignment: Alignment.center,
-                        child: HelperChooser(const [
-                          Icon(Icons.incomplete_circle),
-                          Icon(Icons.grid_4x4)
-                        ], size: 56, onSelectedIcon: onSelectedHelper,),
+                        child: HelperChooser(CutPainterType.values.map((e){
+                          switch (e){
+                            case CutPainterType.circular:
+                              return const Icon(Icons.incomplete_circle);
+                            case CutPainterType.grid:
+                              return const Icon(Icons.grid_4x4);
+                          }
+                        }).toList(), size: 56, onSelectedIcon: onSelectedHelper,),
                       )
                     ]));
               } else {
@@ -97,6 +103,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   void onSelectedHelper(int helperIndex) {
-
+    setState(() {
+      cutPainterType = CutPainterType.values[helperIndex];
+    });
   }
 }

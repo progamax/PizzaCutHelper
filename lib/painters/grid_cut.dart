@@ -1,8 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:pizza_cut_helper/painters/painters.dart';
 
-class GridCut extends CustomPainter {
+class GridCut extends CustomPainter implements CutPainter{
   int rowsNumber;
   double scale;
 
