@@ -25,6 +25,7 @@ class _HelperChooserState extends State<HelperChooser> {
           Icon icon = widget.icons[index];
 
           return IconButton(
+            isSelected: isSelected,
             onPressed: () {
               setState(() {
                 selectedButtonIndex = index;
