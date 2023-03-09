@@ -24,16 +24,12 @@ class _CameraViewerState extends State<CameraViewer> {
       children: [
         CameraPreview(widget.controller),
         GestureDetector(
-          onScaleStart: onScaleStart,
           onScaleEnd: onScaleEnd,
           onScaleUpdate: onScaleUpdate,
           child: Center(child: CustomPaint(painter: CutPainter(widget.painterType, widget.nbParts, helperScale * pinchScale), size: Size.infinite,),),
         )
       ],
     );
-  }
-
-  void onScaleStart(ScaleStartDetails details) {
   }
 
   void onScaleEnd(ScaleEndDetails details) {
